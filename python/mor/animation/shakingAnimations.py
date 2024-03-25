@@ -100,6 +100,48 @@ def defaultShaking( objToAnimate, dt, factor, **param):
 
             print ("Updated Value :"+str(actualValue)+'\n')
 
+def doingNothing( objToAnimate, dt, factor, **param):
+    """
+    **Default animation function** 
+
+    The animation consist on *increasing* a value of a Sofa object until it reach its *maximum*
+
+    To use it the **params** parameters of :py:class:`.ObjToAnimate` which is a dictionnary will need 4 keys:
+
+    **Keys:**
+
+    +---------------+-------+---------------------------------------------------------------------------------+
+    | argument      | type  | definition                                                                      |
+    +===============+=======+=================================================================================+
+    | dataToWorkOn  | str   | Name of the Sofa datafield we will work on by default it will be set to *value* |
+    +---------------+-------+---------------------------------------------------------------------------------+
+    | incrPeriod    | float | Period between each increment                                                   |
+    +---------------+-------+---------------------------------------------------------------------------------+
+    | incr          | float | Value of each increment                                                         |
+    +---------------+-------+---------------------------------------------------------------------------------+
+    | rangeOfAction | float | Until which value the data will increase                                        |
+    +---------------+-------+---------------------------------------------------------------------------------+
+
+    :return: None
+    """
+    import Sofa
+    global lastTime
+    writeCurrent = False
+    time = factor * objToAnimate.duration
+    period = dt * objToAnimate.params['incrPeriod']
+
+    if (time == dt):
+        writeCurrent = True
+
+    if (time-(lastTime + period + dt) >= 0.000001): # (time > (lastTime + period + dt)):
+        lastTime += period
+
+    if ( abs(time-(lastTime + period + dt)) <= 0.000001 ):
+        writeCurrent = True
+
+    if (writeCurrent):
+        print ("Doing Nothing")
+
 def shakingLiver( objToAnimate, dt, factor, **param):
     """
     **Animation function made specifically to apply deformation on the liver scene.**

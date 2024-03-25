@@ -30,13 +30,13 @@ originalScene = utility.openFileName('Select the SOFA scene you want to reduce')
 outputDir = utility.openDirName('Select the directory that will contain all the results')
 
 ### DIAMOND ROBOT PARAM
-nodeToReduce = '/modelNode'
-nord = ObjToAnimate("modelNode/nord", incr=5,incrPeriod=10,rangeOfAction=40)
-sud = ObjToAnimate("modelNode/sud", incr=5,incrPeriod=10,rangeOfAction=40)
-est = ObjToAnimate("modelNode/est", incr=5,incrPeriod=10,rangeOfAction=40)
-ouest = ObjToAnimate("modelNode/ouest", incr=5,incrPeriod=10,rangeOfAction=40)
-listObjToAnimate = [nord,ouest,sud,est]
-addRigidBodyModes = [0,0,0]
+# nodeToReduce = '/modelNode'
+# nord = ObjToAnimate("modelNode/nord", incr=5,incrPeriod=10,rangeOfAction=40)
+# sud = ObjToAnimate("modelNode/sud", incr=5,incrPeriod=10,rangeOfAction=40)
+# est = ObjToAnimate("modelNode/est", incr=5,incrPeriod=10,rangeOfAction=40)
+# ouest = ObjToAnimate("modelNode/ouest", incr=5,incrPeriod=10,rangeOfAction=40)
+# listObjToAnimate = [nord,ouest,sud,est]
+# addRigidBodyModes = [0,0,0]
 
 ## FINGER PARAM
 #nodeToReduce = '/finger'
@@ -60,24 +60,44 @@ addRigidBodyModes = [0,0,0]
 # listObjToAnimate = [actuator]
 # addRigidBodyModes = [0,0,0]
 
-### LIVER
-# nodeToReduce ='/liver'
-# actuator = ObjToAnimate("actuator/actuatorState","shakingLiver",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,dataToWorkOn="position",angle=0,rodRadius=0.4)
-# listObjToAnimate = [actuator]
-# addRigidBodyModes = [0,0,0]
-
-### HEXABEAM
-#nodeToReduce ='/M1'
-#actuator = ObjToAnimate("M1/cableNodeTip", incr=1,incrPeriod=5,rangeOfAction=5)
-#actuator2 = ObjToAnimate("M1/cableNodeSide", incr=1,incrPeriod=5,rangeOfAction=5)
-#listObjToAnimate = [actuator, actuator2]
-#addRigidBodyModes = [0,0,0]
-
-### SNAKE
-#nodeToReduce ='/Snake'
-#actuator = ObjToAnimate("actuatorDummy/actuatorState","shakingSofia",incr=0.4,incrPeriod=3,rangeOfAction=6.2,dataToWorkOn="position",angle=0,rodRadius=0.7)
+# ### LIVER
+#nodeToReduce ='/liver'
+#actuator = ObjToAnimate("actuator/actuatorState","shakingLiver",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,dataToWorkOn="position",angle=0,rodRadius=0.4)
 #listObjToAnimate = [actuator]
 #addRigidBodyModes = [0,0,0]
+
+
+### HEXABEAM
+nodeToReduce ='/M1'
+actuator = ObjToAnimate("M1/cableNodeTip", "doingNothing" ,incr=0,incrPeriod=5,rangeOfAction=5)
+actuator2 = ObjToAnimate("M1/cableNodeSide", "doingNothing" ,incr=1,incrPeriod=5,rangeOfAction=5)
+listObjToAnimate = [actuator, actuator2]
+addRigidBodyModes = [0,0,0]
+
+# ### HexaBeams_bench01
+#nodeToReduce ='HexaBeams/Beam_01'
+#actuator = ObjToAnimate("HexaBeams/Beam_01/cableNodeTip", incr=1,incrPeriod=5,rangeOfAction=5)
+#listObjToAnimate = [actuator]
+#addRigidBodyModes = [0,0,0]
+
+# ### HexaBeams_bench01
+#nodeToReduce ='HexaBeams/Beam_01'
+#actuator = ObjToAnimate("actuator/actuatorState", incr=1,incrPeriod=5,rangeOfAction=5)
+#listObjToAnimate = [actuator]
+#addRigidBodyModes = [0,0,0]
+
+# ### Beam01
+#nodeToReduce ='/Beam_01'
+#actuator = ObjToAnimate("Beam_01/cableNodeTip","doingNothing",incr=5,incrPeriod=10,rangeOfAction=40)
+#listObjToAnimate = [actuator]
+#addRigidBodyModes = [0,0,0]
+
+
+### SNAKE
+# nodeToReduce ='/Snake'
+# actuator = ObjToAnimate("actuatorDummy/actuatorState","shakingSofia",incr=0.4,incrPeriod=3,rangeOfAction=6.2,dataToWorkOn="position",angle=0,rodRadius=0.7)
+# listObjToAnimate = [actuator]
+# addRigidBodyModes = [0,0,0]
 
 
 # Tolerance
@@ -107,7 +127,7 @@ reduceMyModel = ReduceModel(    originalScene,
 #######################################################################
 ####################       EXECUTION        ###########################
 ### TO PERFORM THE REDUCTION ALL AT ONCE:
-reduceMyModel.performReduction()
+#reduceMyModel.performReduction()
 
 ### TO PERFORM THE REDUCTION STEP BY STEP:
 ####################    SOFA LAUNCHER       ##########################
@@ -119,7 +139,7 @@ reduceMyModel.performReduction()
 #   add a writeState componant to save the shaking resulting states  #
 #                                                                    #
 ######################################################################
-# reduceMyModel.phase1()
+reduceMyModel.phase1()
 
 
 ####################    PYTHON SCRIPT       ##########################
