@@ -61,17 +61,29 @@ outputDir = utility.openDirName('Select the directory that will contain all the 
 # addRigidBodyModes = [0,0,0]
 
 # ### LIVER
-#nodeToReduce ='/liver'
-#actuator = ObjToAnimate("actuator/actuatorState","shakingLiver",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,dataToWorkOn="position",angle=0,rodRadius=0.4)
-#listObjToAnimate = [actuator]
-#addRigidBodyModes = [0,0,0]
+# nodeToReduce ='/liver'
+# actuator = ObjToAnimate("actuator/actuatorState","shakingLiver",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,dataToWorkOn="position",angle=0,rodRadius=0.4)
+# listObjToAnimate = [actuator]
+# addRigidBodyModes = [0,0,0]
+
+# ### liverFine_test
+# nodeToReduce ='/liver'
+# actuator = ObjToAnimate("actuator/actuatorState","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,dataToWorkOn="position",angle=0,rodRadius=0.4)
+# listObjToAnimate = [actuator]
+# addRigidBodyModes = [0,0,0]
 
 
 ### HEXABEAM
+# nodeToReduce ='/M1'
+# actuator = ObjToAnimate("M1/cableNodeTip",incr=1,incrPeriod=5,rangeOfAction=5)
+# actuator2 = ObjToAnimate("M1/cableNodeSide",incr=1,incrPeriod=5,rangeOfAction=5)
+# listObjToAnimate = [actuator, actuator2]
+# addRigidBodyModes = [0,0,0]
+
+### HexaBeam_test
 nodeToReduce ='/M1'
-actuator = ObjToAnimate("M1/cableNodeTip", "doingNothing" ,incr=0,incrPeriod=5,rangeOfAction=5)
-actuator2 = ObjToAnimate("M1/cableNodeSide", "doingNothing" ,incr=1,incrPeriod=5,rangeOfAction=5)
-listObjToAnimate = [actuator, actuator2]
+actuator = ObjToAnimate("actuator/actuatedState", "doingNothing" ,incr=1,incrPeriod=5,rangeOfAction=5)
+listObjToAnimate = [actuator]
 addRigidBodyModes = [0,0,0]
 
 # ### HexaBeams_bench01
@@ -80,7 +92,7 @@ addRigidBodyModes = [0,0,0]
 #listObjToAnimate = [actuator]
 #addRigidBodyModes = [0,0,0]
 
-# ### HexaBeams_bench01
+# ### HexaBeams_bench01_test
 #nodeToReduce ='HexaBeams/Beam_01'
 #actuator = ObjToAnimate("actuator/actuatorState", incr=1,incrPeriod=5,rangeOfAction=5)
 #listObjToAnimate = [actuator]
@@ -88,7 +100,13 @@ addRigidBodyModes = [0,0,0]
 
 # ### Beam01
 #nodeToReduce ='/Beam_01'
-#actuator = ObjToAnimate("Beam_01/cableNodeTip","doingNothing",incr=5,incrPeriod=10,rangeOfAction=40)
+#actuator = ObjToAnimate("Beam_01/cableNodeTip",incr=5,incrPeriod=10,rangeOfAction=40)
+#listObjToAnimate = [actuator]
+#addRigidBodyModes = [0,0,0]
+
+# ### Beam01_test
+#nodeToReduce ='/Beam_01'
+#actuator = ObjToAnimate("actuator_Beam01/actuatedBeam01","doingNothing",incr=5,incrPeriod=10,rangeOfAction=40)
 #listObjToAnimate = [actuator]
 #addRigidBodyModes = [0,0,0]
 
@@ -127,7 +145,7 @@ reduceMyModel = ReduceModel(    originalScene,
 #######################################################################
 ####################       EXECUTION        ###########################
 ### TO PERFORM THE REDUCTION ALL AT ONCE:
-#reduceMyModel.performReduction()
+reduceMyModel.performReduction()
 
 ### TO PERFORM THE REDUCTION STEP BY STEP:
 ####################    SOFA LAUNCHER       ##########################
@@ -139,7 +157,7 @@ reduceMyModel = ReduceModel(    originalScene,
 #   add a writeState componant to save the shaking resulting states  #
 #                                                                    #
 ######################################################################
-reduceMyModel.phase1()
+#reduceMyModel.phase1()
 
 
 ####################    PYTHON SCRIPT       ##########################
