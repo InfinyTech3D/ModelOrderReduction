@@ -27,7 +27,7 @@ def main():
 # Function called when the scene graph is being created
 def createScene(root):
 
-    root.gravity=[0, 0, -0.9]
+    root.gravity=[0, 0, -9810]
     root.name="root"
     root.dt=0.1
 
@@ -49,10 +49,7 @@ def createScene(root):
     root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.75", contactDistance="0.1")# I am not sure about this linw
     root.addObject('LocalMinDistance', alarmDistance=10, contactDistance=5, angleCone=0.01)
 
-    # Topology
-    
-    
-
+   
     #  Beam_01
     childNode1 = root.addChild("Beam_01")
 
@@ -64,7 +61,8 @@ def createScene(root):
     childNode1.addObject('RegularGridTopology',name="container", nx="5", ny="20", nz="5", xmin="0", xmax="10", ymin="0", ymax="40", zmin="20", zmax="30")
     childNode1.addObject('MechanicalObject', name="Volume")
    
-    childNode1.addObject('DiagonalMass', massDensity="2.0") # the Beam does not move with the uniform mass
+    #childNode1.addObject('DiagonalMass', massDensity="2.0") # the Beam does not move with the uniform mass
+    childNode1.addObject('UniformMass', totalMass="1.0")
     
     childNode1.addObject('BoxROI', name="ROI1", box="-1 -1 0 10 1 50", drawBoxes="1")
     childNode1.addObject('FixedProjectiveConstraint', indices="@ROI1.indices")
