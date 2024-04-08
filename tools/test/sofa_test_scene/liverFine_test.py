@@ -12,6 +12,8 @@ def createScene(rootNode):
     rootNode.addObject('VisualStyle', displayFlags='showCollision showVisualModels showForceFields showInteractionForceFields hideCollisionModels hideBoundingCollisionModels hideWireframe')
     rootNode.findData('dt').value=0.01
     rootNode.findData('gravity').value=[0, -981, 0]
+    surfaceColor=[0.7, 0.7, 0.7, 0.7]
+
     liver = rootNode.addChild('liver')
     liver.addObject('EulerImplicitSolver', rayleighStiffness = 0.0, rayleighMass = 0.0)
     liver.addObject('SparseLDLSolver',template="CompressedRowSparseMatrixMat3x3d")
@@ -28,7 +30,7 @@ def createScene(rootNode):
     # Add a visual model
     visu = liver.addChild('visu')
     visu.addObject(  'MeshOBJLoader', name= 'loader', filename=meshPath+'liver-smoothUV.obj')
-    visu.addObject('OglModel',src='@loader')
+    visu.addObject('OglModel',src='@loader',  color=list(surfaceColor))
     visu.addObject('BarycentricMapping')
 
     # Add an actuator
