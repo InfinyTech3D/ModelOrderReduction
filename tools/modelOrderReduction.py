@@ -67,10 +67,10 @@ outputDir = utility.openDirName('Select the directory that will contain all the 
 # addRigidBodyModes = [0,0,0]
 
 # ### liverFine_test
-# nodeToReduce ='/liver'
-# actuator = ObjToAnimate("actuator/actuatorState","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,dataToWorkOn="position",angle=0,rodRadius=0.4)
-# listObjToAnimate = [actuator]
-# addRigidBodyModes = [0,0,0]
+nodeToReduce ='/liver'
+actuator = ObjToAnimate("actuator/actuatorState","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
+listObjToAnimate = [actuator]
+addRigidBodyModes = [0,0,0]
 
 
 ### HEXABEAM
@@ -81,10 +81,10 @@ outputDir = utility.openDirName('Select the directory that will contain all the 
 # addRigidBodyModes = [0,0,0]
 
 ### HexaBeam_test
-nodeToReduce ='/M1'
-actuator = ObjToAnimate("actuator/actuatedState", "doingNothing" ,incr=1,incrPeriod=5,rangeOfAction=5)
-listObjToAnimate = [actuator]
-addRigidBodyModes = [0,0,0]
+# nodeToReduce ='/M1'
+# actuator = ObjToAnimate("actuator/actuatedState", "doingNothing" ,incr=1,incrPeriod=5,rangeOfAction=5)
+# listObjToAnimate = [actuator]
+# addRigidBodyModes = [0,0,0]
 
 # ### HexaBeams_bench01
 #nodeToReduce ='HexaBeams/Beam_01'
@@ -105,10 +105,10 @@ addRigidBodyModes = [0,0,0]
 #addRigidBodyModes = [0,0,0]
 
 # ### Beam01_test
-#nodeToReduce ='/Beam_01'
-#actuator = ObjToAnimate("actuator_Beam01/actuatedBeam01","doingNothing",incr=5,incrPeriod=10,rangeOfAction=40)
-#listObjToAnimate = [actuator]
-#addRigidBodyModes = [0,0,0]
+# nodeToReduce ='/Beam_01'
+# actuator = ObjToAnimate("actuator_Beam01/actuatedBeam01","doingNothing",incr=5,incrPeriod=10,rangeOfAction=40)
+# listObjToAnimate = [actuator]
+# addRigidBodyModes = [0,0,0]
 
 
 ### SNAKE
@@ -145,7 +145,7 @@ reduceMyModel = ReduceModel(    originalScene,
 #######################################################################
 ####################       EXECUTION        ###########################
 ### TO PERFORM THE REDUCTION ALL AT ONCE:
-reduceMyModel.performReduction()
+#reduceMyModel.performReduction()
 
 ### TO PERFORM THE REDUCTION STEP BY STEP:
 ####################    SOFA LAUNCHER       ##########################
@@ -157,7 +157,7 @@ reduceMyModel.performReduction()
 #   add a writeState componant to save the shaking resulting states  #
 #                                                                    #
 ######################################################################
-#reduceMyModel.phase1()
+reduceMyModel.phase1()
 
 
 ####################    PYTHON SCRIPT       ##########################
