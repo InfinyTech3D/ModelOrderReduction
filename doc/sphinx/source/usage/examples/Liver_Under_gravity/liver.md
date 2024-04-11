@@ -7,7 +7,7 @@ The liver is a highly complex organ with unique material properties and nonlinea
 dynamic behaviors.
 
 **Brief description** : 
-For simulating the liver. We employ a mesh that has 22019 tetrahedra with 4293 nodes under the gravitational force. In particular, the liver with its full representation, is fixed from the top and deforms as a result of gravity.
+For simulating the liver, we employ a mesh that has 22019 tetrahedra with 4293 nodes under the gravitational force. In particular, the liver with its full representation, is fixed from the top and deforms as a result of gravity.
 
 **Why reduce it**:
 We employ our model order reduction to effectively characterize the liver's deformations caused by external forces. As a result, this will enable us to design real-time finite element-based simulations with the organ at less cost.
