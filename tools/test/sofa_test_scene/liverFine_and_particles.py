@@ -31,7 +31,7 @@ class MOController(Sofa.Core.Controller):
          # Change the the value of the position in z direction
          with self.state.position.writeable() as state:
              for i in range(len(state)): 
-                  state[i][2] += 1
+                  #state[i][2] += 0.01
                   print('state vector after modification: '+str(state))
                      
 
@@ -73,7 +73,7 @@ def createScene(rootNode):
 
     # Visual manager loop
     rootNode.addObject('DefaultVisualManagerLoop')
-    rootNode.addObject('VisualStyle', displayFlags='showCollisionModels showVisualModels showForceFields showInteractionForceFields hideWireframe')
+    rootNode.addObject('VisualStyle', displayFlags='showCollisionModels showForceFields hideWireframe')
 
     # Collision pipeline
     rootNode.addObject('CollisionPipeline', verbose="0")
@@ -89,25 +89,26 @@ def createScene(rootNode):
     # Add time integration scheme and solver
     rootNode.addObject('EulerImplicitSolver', name='EulerImplicit',  rayleighStiffness='0.1', rayleighMass='0.1')
     rootNode.addObject('CGLinearSolver', name='CG Solver', iterations='25', tolerance='1e-9', threshold='1e-9')
-    # Add carving manager
-
+    
+    #---------------------------------------------------------------------------------------
+   
     # Add carving element
     carvingElement = rootNode.addChild('carvingElement')
 
     # Access the mechanical object 
-    particles = carvingElement.addObject('MechanicalObject', name='Particles', template='Vec3d', position='5 5 1', velocity='0 0 0')
-    #carvingElement.addObject(MOController('MechanicalObject', name= 'StateAccessor', mechanical_object=particles))
+    particles = carvingElement.addObject('MechanicalObject', name='Particles', template='Vec3d', position='-2 3 5', velocity='0 0 0')
+    
     carvingElement.addObject(MOController(state=particles))
 
-    carvingElement.addObject('UniformMass', name='Mass', totalMass='10.0')
-    carvingElement.addObject('CGLinearSolver', iterations="200", tolerance="1e-09", threshold="1e-09")
-    carvingElement.addObject('ConstantForceField', totalForce='-1 0 0 0 0 0')
+    carvingElement.addObject('UniformMass', name='Mass', totalMass='40.0')
+    carvingElement.addObject('ConstantForceField', totalForce='0 0 -20 0 0 0')
     carvingElement.addObject('SphereCollisionModel', name='tool', radius="0.1", tags="CarvingTool")
 
+    #----------------------------------------------------------------------------------------
     #Add the liver node
+   
     liver = rootNode.addChild('liver')
-    liver.addObject('EulerImplicitSolver', rayleighStiffness = 0.0, rayleighMass = 0.0)
-    liver.addObject('SparseLDLSolver',template="CompressedRowSparseMatrixMat3x3d")
+    
     liver.addObject('MeshVTKLoader', name="loader", filename=meshPath+'liverFine.vtu')
     liver.addObject('TetrahedronSetTopologyContainer', name='liver_topo' , src="@loader")
     liver.addObject('MechanicalObject', name="MO")
@@ -115,7 +116,7 @@ def createScene(rootNode):
     liver.addObject('BoxROI', name='boxROIactuation', box='-5 0 -0.5 -4 0.5 0.5', drawBoxes='true')
 
     liver.addObject('UniformMass', totalMass=0.3)
-    liver.addObject('TetrahedronFEMForceField', poissonRatio="0.3", youngModulus="2000")
+    liver.addObject('TetrahedronFEMForceField', poissonRatio="0.3", youngModulus="500")
     liver.addObject('RestShapeSpringsForceField', points='@ROI1.indices', stiffness = '1e8')
     
     # Add a visual model
@@ -131,8 +132,12 @@ def createScene(rootNode):
     collision.addObject('TriangleSetGeometryAlgorithms', name='GeomAlgo', template='Vec3d', drawTriangles='0')
     collision.addObject('Tetra2TriangleTopologicalMapping', input='@../liver_topo', output='@container')
     collision.addObject('TriangleCollisionModel', name='triangleCol')
-    collision.addObject('PointCollisionModel', name='pointCol')
+    collision.addObject('PointCollisionModel', name='pointCol',contactStiffness="1000")
 
-    # Add an actuator
-    actuator = rootNode.addChild('actuator')
-    actuator.addObject('MechanicalObject', name = 'actuatorState', position = '@liver/MO.position', template = 'Vec3d')
+    # Add an actuator for liver
+    actuatorLiver = rootNode.addChild('actuatorLiver')
+    actuatorLiver.addObject('MechanicalObject', name = 'actuatorLiver', position = '@liver/MO.position', template = 'Vec3d')
+
+    # Add an actuator for particles
+    #actuatorParticles = rootNode.addChild('actuatorParticles')
+    #actuator.addObject('MechanicalObject', name = 'actuatorParticles', position = '@carvingElement/Particles.position', template = 'Vec3d')
