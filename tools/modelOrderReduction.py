@@ -67,16 +67,41 @@ outputDir = utility.openDirName('Select the directory that will contain all the 
 # addRigidBodyModes = [0,0,0]
 
 # ### liverFine_test
+# nodeToReduce ='/liver'
+# actuator = ObjToAnimate("actuator/actuatorState","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
+# listObjToAnimate = [actuator]
+# addRigidBodyModes = [0,0,0]
+
+# ### liverFine_and_particles
 nodeToReduce ='/liver'
-actuator = ObjToAnimate("actuator/actuatorState","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
-listObjToAnimate = [actuator]
+actuatorLiver = ObjToAnimate("actuatorLiver/actuatorLiver","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
+# actuatorParticles = ObjToAnimate("actuatorParticles/actuatorParticles","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
+# #listObjToAnimate = [actuatorLiver,actuatorParticles]
+listObjToAnimate = [actuatorLiver]
+# listObjToAnimate = [actuatorParticles]
 addRigidBodyModes = [0,0,0]
+
+# ### liverFine_and_particles_with_gravity
+# nodeToReduce ='/liver'
+# actuatorLiver = ObjToAnimate("actuatorLiver/actuatorLiver","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
+# #actuatorParticles = ObjToAnimate("actuatorParticles/actuatorParticles","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
+# #listObjToAnimate = [actuatorLiver,actuatorParticles]
+# listObjToAnimate = [actuatorLiver]
+# #listObjToAnimate = [actuatorParticles]
+# addRigidBodyModes = [0,0,0]
+
+# ### liverFine_and_particles_with_rotation
+# nodeToReduce ='/liver'
+# actuatorLiver = ObjToAnimate("actuatorLiver/actuatorLiver","shakingLiver",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,dataToWorkOn="position",angle=0,rodRadius=0.4)
+# listObjToAnimate = [actuatorLiver]
+# addRigidBodyModes = [0,0,0]
+
 
 
 ### HEXABEAM
 # nodeToReduce ='/M1'
-# actuator = ObjToAnimate("M1/cableNodeTip",incr=1,incrPeriod=5,rangeOfAction=5)
-# actuator2 = ObjToAnimate("M1/cableNodeSide",incr=1,incrPeriod=5,rangeOfAction=5)
+# actuator = ObjToAnimate("M1/cableNodeTip","doingNothing",incr=1,incrPeriod=5,rangeOfAction=5)
+# actuator2 = ObjToAnimate("M1/cableNodeSide","doingNothing",incr=1,incrPeriod=5,rangeOfAction=5)
 # listObjToAnimate = [actuator, actuator2]
 # addRigidBodyModes = [0,0,0]
 
@@ -85,6 +110,13 @@ addRigidBodyModes = [0,0,0]
 # actuator = ObjToAnimate("actuator/actuatedState", "doingNothing" ,incr=1,incrPeriod=5,rangeOfAction=5)
 # listObjToAnimate = [actuator]
 # addRigidBodyModes = [0,0,0]
+
+### HexaBeam_test_with_boxROI
+# nodeToReduce ='/M1'
+# actuator = ObjToAnimate("actuator/actuatedState", "doingNothing" ,incr=1,incrPeriod=5,rangeOfAction=5)
+# listObjToAnimate = [actuator]
+# addRigidBodyModes = [0,0,0]
+
 
 # ### HexaBeams_bench01
 #nodeToReduce ='HexaBeams/Beam_01'
@@ -145,7 +177,7 @@ reduceMyModel = ReduceModel(    originalScene,
 #######################################################################
 ####################       EXECUTION        ###########################
 ### TO PERFORM THE REDUCTION ALL AT ONCE:
-#reduceMyModel.performReduction()
+reduceMyModel.performReduction()
 
 ### TO PERFORM THE REDUCTION STEP BY STEP:
 ####################    SOFA LAUNCHER       ##########################
@@ -157,7 +189,7 @@ reduceMyModel = ReduceModel(    originalScene,
 #   add a writeState componant to save the shaking resulting states  #
 #                                                                    #
 ######################################################################
-reduceMyModel.phase1()
+#reduceMyModel.phase1()
 
 
 ####################    PYTHON SCRIPT       ##########################
@@ -169,7 +201,7 @@ reduceMyModel.phase1()
 #                       the different mode                           #
 #                                                                    #
 ######################################################################
-# reduceMyModel.phase2()
+#reduceMyModel.phase2()
 
 
 ####################    SOFA LAUNCHER       ##########################
@@ -187,7 +219,7 @@ reduceMyModel.phase1()
 #       and produce an Hyper Reduced description of the model        #
 #                                                                    #
 ######################################################################
-# reduceMyModel.phase3()
+#reduceMyModel.phase3()
 
 
 ####################    PYTHON SCRIPT       ##########################
@@ -200,4 +232,4 @@ reduceMyModel.phase1()
 #      with it. Additionnally we also compute the Active Nodes       #
 #                                                                    #
 ######################################################################
-# reduceMyModel.phase4()
+#reduceMyModel.phase4()
