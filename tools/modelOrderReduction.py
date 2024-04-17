@@ -74,11 +74,11 @@ outputDir = utility.openDirName('Select the directory that will contain all the 
 
 # ### liverFine_and_particles
 nodeToReduce ='/liver'
-actuatorLiver = ObjToAnimate("actuatorLiver/actuatorLiver","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
-# actuatorParticles = ObjToAnimate("actuatorParticles/actuatorParticles","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
-# #listObjToAnimate = [actuatorLiver,actuatorParticles]
-listObjToAnimate = [actuatorLiver]
-# listObjToAnimate = [actuatorParticles]
+actuatorLiver = ObjToAnimate("liver/actuatorLiver/actuatorLiver","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
+actuatorParticles = ObjToAnimate("liver/actuatorParticles/actuatorParticles","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
+listObjToAnimate = [actuatorLiver,actuatorParticles]
+# listObjToAnimate = [actuatorLiver]
+# # listObjToAnimate = [actuatorParticles]
 addRigidBodyModes = [0,0,0]
 
 # ### liverFine_and_particles_with_gravity
@@ -96,6 +96,11 @@ addRigidBodyModes = [0,0,0]
 # listObjToAnimate = [actuatorLiver]
 # addRigidBodyModes = [0,0,0]
 
+# ### liverFine_with_cable
+# nodeToReduce ='/liver'
+# actuatorLiver = ObjToAnimate("liver/actuatorLiver/actuatorLiver",incr=5,incrPeriod=10,rangeOfAction=40)
+# listObjToAnimate = [actuatorLiver]
+# addRigidBodyModes = [0,0,0]
 
 
 ### HEXABEAM
