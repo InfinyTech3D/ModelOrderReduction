@@ -72,14 +72,21 @@ outputDir = utility.openDirName('Select the directory that will contain all the 
 # listObjToAnimate = [actuator]
 # addRigidBodyModes = [0,0,0]
 
-# ### liverFine_and_particles
+# ### onlyLiver_gravity_CG
 nodeToReduce ='/liver'
-actuatorLiver = ObjToAnimate("liver/actuatorLiver/actuatorLiver","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
-actuatorParticles = ObjToAnimate("liver/actuatorParticles/actuatorParticles","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
-listObjToAnimate = [actuatorLiver,actuatorParticles]
-# listObjToAnimate = [actuatorLiver]
-# # listObjToAnimate = [actuatorParticles]
+actuator = ObjToAnimate("actuatorLiver/actuatorLiver","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
+listObjToAnimate = [actuator]
 addRigidBodyModes = [0,0,0]
+
+
+# ### liverFine_and_particles
+# nodeToReduce ='/liver'
+# actuatorLiver = ObjToAnimate("liver/actuatorLiver/actuatorLiver","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
+# actuatorParticles = ObjToAnimate("liver/actuatorParticles/actuatorParticles","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
+# listObjToAnimate = [actuatorLiver,actuatorParticles]
+# # listObjToAnimate = [actuatorLiver]
+# # # listObjToAnimate = [actuatorParticles]
+# addRigidBodyModes = [0,0,0]
 
 # ### liverFine_and_particles_with_gravity
 # nodeToReduce ='/liver'
