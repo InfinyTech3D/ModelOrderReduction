@@ -73,11 +73,16 @@ outputDir = utility.openDirName('Select the directory that will contain all the 
 # addRigidBodyModes = [0,0,0]
 
 # ### onlyLiver_gravity_CG
+# nodeToReduce ='/liver'
+# actuator = ObjToAnimate("actuatorLiver/actuatorLiver","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
+# listObjToAnimate = [actuator]
+# addRigidBodyModes = [0,0,0]
+
+# ### liverFine_and_particles_gravity_FreeMotion
 nodeToReduce ='/liver'
 actuator = ObjToAnimate("actuatorLiver/actuatorLiver","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
 listObjToAnimate = [actuator]
 addRigidBodyModes = [0,0,0]
-
 
 # ### liverFine_and_particles
 # nodeToReduce ='/liver'
