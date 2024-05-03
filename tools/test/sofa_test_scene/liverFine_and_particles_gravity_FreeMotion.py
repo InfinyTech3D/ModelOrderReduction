@@ -87,9 +87,8 @@ def createScene(rootNode):
     rootNode.findData('dt').value=0.03
     rootNode.findData('gravity').value=[0, -5, 0]
 
-   #------------------------------------------------------------------------------------------------
+   # Add carving element------------------------------------------------------------------------------------------------
 
-    # Add carving element
     carvingElement = rootNode.addChild('carvingElement')
 
     # Access the mechanical object 
@@ -99,17 +98,16 @@ def createScene(rootNode):
     carvingElement.addObject('UniformMass', name='Mass', totalMass='40.0')
     carvingElement.addObject('EulerImplicitSolver', name='EulerImplicit',  rayleighStiffness='0.1', rayleighMass='0.1')
     carvingElement.addObject('CGLinearSolver', name="solver" ,iterations="200", tolerance="1e-09", threshold="1e-09")
-    #carvingElement.addObject('ConstantForceField', totalForce='0 0 -10 0 0 0')
     carvingElement.addObject('SphereCollisionModel', name='tool', radius="0.1", tags="CarvingTool")
     carvingElement.addObject('UncoupledConstraintCorrection') # Related to FreeMotionAnimationLoop
     
-    #-----------------------------------------------------------------------------------------------
+    # Add the liver node-----------------------------------------------------------------------------------------------
     
-    #Add the liver node
     liver = rootNode.addChild('liver')
+
     liver.addObject('EulerImplicitSolver', rayleighStiffness = 0.0, rayleighMass = 0.0)
     liver.addObject('SparseLDLSolver', name="solver" ,template="CompressedRowSparseMatrixMat3x3d")
-    #liver.addObject('CGLinearSolver', name="solver" ,iterations="200", tolerance="1e-09", threshold="1e-09")
+    
     liver.addObject('GenericConstraintCorrection') # Related to FreeMotionAnimationLoop
     liver.addObject('MeshVTKLoader', name="loader", filename=meshPath+'liverFine.vtu')
     liver.addObject('TetrahedronSetTopologyContainer', name='liver_topo' , src="@loader")
@@ -121,7 +119,6 @@ def createScene(rootNode):
     liver.addObject('TetrahedronFEMForceField', poissonRatio="0.3", youngModulus="500")
     liver.addObject('RestShapeSpringsForceField', points='@ROI1.indices', stiffness = '1e8')
    
-
     # Add a visual model
     visu = liver.addChild('visu')
     visu.addObject( 'MeshOBJLoader', name= 'loader', filename=meshPath+'liver-smoothUV.obj')
@@ -136,12 +133,12 @@ def createScene(rootNode):
     collision.addObject('Tetra2TriangleTopologicalMapping', input='@../liver_topo', output='@container')
     collision.addObject('TriangleCollisionModel', name='triangleCol')
     collision.addObject('PointCollisionModel', name='pointCol')
-    #-----------------------------------------------------------------------------------------------
-    # Add an actuator for liver
+   
+    #  Add an actuator for liver-----------------------------------------------------------------------------------------------
+
     actuatorLiver = rootNode.addChild('actuatorLiver')
     actuatorLiver.addObject('MechanicalObject', name = 'actuatorLiver', position = '@liver/MO.position', template = 'Vec3d')
-    
-
-    # Add an actuator for particles
+  
+    # Add an actuator for particles---------------------------------------------------------------------------------------------
     #actuatorParticles = rootNode.addChild('actuatorParticles')
-    #actuator.addObject('MechanicalObject', name = 'actuatorParticles', position = '@carvingElement/Particles.position', template = 'Vec3d')
+    #actuatorParticles.addObject('MechanicalObject', name = 'actuatorParticles', position = '@carvingElement/Particles.position', template = 'Vec3d')
