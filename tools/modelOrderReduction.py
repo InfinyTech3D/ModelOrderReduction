@@ -66,34 +66,35 @@ outputDir = utility.openDirName('Select the directory that will contain all the 
 # listObjToAnimate = [actuator]
 # addRigidBodyModes = [0,0,0]
 
-# ### liverFine_test
+# ### liverFine_gravity
 # nodeToReduce ='/liver'
 # actuator = ObjToAnimate("actuator/actuatorState","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
 # listObjToAnimate = [actuator]
 # addRigidBodyModes = [0,0,0]
 
-# ### onlyLiver_gravity_CG
-# nodeToReduce ='/liver'
-# actuator = ObjToAnimate("actuatorLiver/actuatorLiver","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
-# listObjToAnimate = [actuator]
-# addRigidBodyModes = [0,0,0]
-
-# ### liverFine_and_particles_gravity_FreeMotion
+# ### liverFine_and_particles_ConstantForceField_FreeMotion
 nodeToReduce ='/liver'
-actuator = ObjToAnimate("actuatorLiver/actuatorLiver","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
+actuator = ObjToAnimate("actuatorLiver/actuatorLiver","doingNothing",incr=0.2,incrPeriod=2.5,rangeOfAction=20,angle=0,rodRadius=0.4)
 listObjToAnimate = [actuator]
 addRigidBodyModes = [0,0,0]
 
-# ### liverFine_and_particles
+# ### liverFine_and_particles_gravity_FreeMotion
 # nodeToReduce ='/liver'
-# actuatorLiver = ObjToAnimate("liver/actuatorLiver/actuatorLiver","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
-# actuatorParticles = ObjToAnimate("liver/actuatorParticles/actuatorParticles","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
+# actuatorLiver = ObjToAnimate("actuatorLiver/actuatorLiver","doingNothing",incr=0.2,incrPeriod=2.5,rangeOfAction=20,angle=0,rodRadius=0.4)
+# actuatorParticles= ObjToAnimate("actuatorParticles/actuatorParticles","doingNothing",incr=0.2,incrPeriod=2.5,rangeOfAction=20,angle=0,rodRadius=0.4)
+# listObjToAnimate = [actuatorLiver,actuatorParticles]
+# addRigidBodyModes = [0,0,0]
+
+# ### liverFine_and_particles_ConstantForceField_DefaultAnimation
+# nodeToReduce ='/liver'
+# actuatorLiver = ObjToAnimate("actuatorLiver/actuatorLiver","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
+# actuatorParticles = ObjToAnimate("actuatorParticles/actuatorParticles","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
 # listObjToAnimate = [actuatorLiver,actuatorParticles]
 # # listObjToAnimate = [actuatorLiver]
 # # # listObjToAnimate = [actuatorParticles]
 # addRigidBodyModes = [0,0,0]
 
-# ### liverFine_and_particles_with_gravity
+# ### liverFine_and_particles__gravity_DefaultAnimation
 # nodeToReduce ='/liver'
 # actuatorLiver = ObjToAnimate("actuatorLiver/actuatorLiver","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
 # #actuatorParticles = ObjToAnimate("actuatorParticles/actuatorParticles","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
