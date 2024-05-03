@@ -138,6 +138,6 @@ def createScene(rootNode):
     actuatorLiver = rootNode.addChild('actuatorLiver')
     actuatorLiver.addObject('MechanicalObject', name = 'actuatorLiver', position = '@liver/MO.position', template = 'Vec3d')
 
-    # Add an actuator for particles
+    #Add an actuator for particles
     #actuatorParticles = rootNode.addChild('actuatorParticles')
-    #actuator.addObject('MechanicalObject', name = 'actuatorParticles', position = '@carvingElement/Particles.position', template = 'Vec3d')
+    #actuatorParticles.addObject('MechanicalObject', name = 'actuatorParticles', position = '@carvingElement/Particles.position', template = 'Vec3d')
