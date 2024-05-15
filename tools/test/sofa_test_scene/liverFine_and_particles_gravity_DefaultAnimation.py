@@ -87,8 +87,8 @@ def createScene(rootNode):
     rootNode.findData('gravity').value=[0, -5, 0]
 
     # Add time integration scheme and solver
-    #rootNode.addObject('EulerImplicitSolver', name='EulerImplicit',  rayleighStiffness='0.1', rayleighMass='0.1')
-    #rootNode.addObject('CGLinearSolver', name='CG Solver', iterations='25', tolerance='1e-9', threshold='1e-9')
+    rootNode.addObject('EulerImplicitSolver', name='EulerImplicit',  rayleighStiffness='0.1', rayleighMass='0.1')
+    rootNode.addObject('CGLinearSolver', name='CG Solver', iterations='25', tolerance='1e-9', threshold='1e-9')
     
     #-------------------------------------------------------------------------
     # Add carving element
@@ -99,21 +99,16 @@ def createScene(rootNode):
     carvingElement.addObject(MOController(state=particles))
 
     carvingElement.addObject('UniformMass', name='Mass', totalMass='2.0')
-    carvingElement.addChild('EulerImplicitSolver')
-    carvingElement.addObject('CGLinearSolver', iterations="200", tolerance="1e-09", threshold="1e-09")
-    #carvingElement.addObject('ConstantForceField', totalForce='0 0 -10 0 0 0')
     carvingElement.addObject('SphereCollisionModel', name='tool', radius="0.1", tags="CarvingTool")
 
     #-------------------------------------------------------------------------
     #Add the liver node
     liver = rootNode.addChild('liver')
-    #liver.addObject('EulerImplicitSolver', rayleighStiffness = 0.0, rayleighMass = 0.0)
-    #liver.addObject('SparseLDLSolver',template="CompressedRowSparseMatrixMat3x3d")
     liver.addObject('MeshVTKLoader', name="loader", filename=meshPath+'liverFine.vtu')
     liver.addObject('TetrahedronSetTopologyContainer', name='liver_topo' , src="@loader")
     liver.addObject('MechanicalObject', name="MO")
     liver.addObject('BoxROI', name='ROI1', box='0 3 -1 2 5 2', drawBoxes='true')
-    #liver.addObject('BoxROI', name='boxROIactuation', box='-5 0 -0.5 -4 0.5 0.5', drawBoxes='true')
+    
 
     liver.addObject('UniformMass', totalMass=0.3)
     liver.addObject('TetrahedronFEMForceField', poissonRatio="0.3", youngModulus="500")
