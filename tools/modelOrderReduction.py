@@ -78,6 +78,12 @@ actuator = ObjToAnimate("actuatorLiver/actuatorLiver","doingNothing",incr=0.2,in
 listObjToAnimate = [actuator]
 addRigidBodyModes = [0,0,0]
 
+
+
+
+
+
+
 # ### liverFine_and_particles_gravity_FreeMotion
 # nodeToReduce ='/liver'
 # actuatorLiver = ObjToAnimate("actuatorLiver/actuatorLiver","doingNothing",incr=0.2,incrPeriod=2.5,rangeOfAction=20,angle=0,rodRadius=0.4)
