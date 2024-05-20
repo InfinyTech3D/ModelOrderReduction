@@ -118,6 +118,9 @@ def createScene(rootNode):
     liver.addObject('UniformMass', totalMass=0.3)
     liver.addObject('TetrahedronFEMForceField', poissonRatio="0.3", youngModulus="500")
     liver.addObject('RestShapeSpringsForceField', points='@ROI1.indices', stiffness = '1e8')
+
+    # Add a write state
+    liver.addObject('WriteState', name="StateWriter", filename="./liverParticleGravity.state", writeX=1, writeV=0, writeF=0, writeX0=1)
    
     # Add a visual model
     visu = liver.addChild('visu')
