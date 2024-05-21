@@ -239,6 +239,34 @@ class ReduceModel():
         tps = int(round(time.time() - init_time))
         print("TOTAL TIME --- %s ---" % (datetime.timedelta(seconds=tps) ) )
 
+    def performReductionFromPhase2(self,phasesToExecute=None,nbrOfModes=None):
+        """
+        **Perform all the steps of the reduction in one function**
+
+        +-----------------+-----------+----------------------------------------------------------+
+        | argument        | type      | definition                                               |
+        +=================+===========+==========================================================+
+        | phasesToExecute | list(int) || Allow to choose which phase to execute for the reduction|
+        |                 |           || *more details see* :py:func:`setListSofaScene`          |
+        +-----------------+-----------+----------------------------------------------------------+
+        | nbrOfModes      | int       || Number of modes you want to keep                        |
+        |                 |           || ``by default will keep them all``                       |
+        +-----------------+-----------+----------------------------------------------------------+
+        
+        If you are sure of all the parameters this way is recommended to gain time
+
+        """
+        ### This initila time we allow us to give at the end the total time execution
+        init_time = time.time()
+
+        
+        self.phase2()
+        self.phase3(phasesToExecute,nbrOfModes)
+        self.phase4(nbrOfModes)
+
+        tps = int(round(time.time() - init_time))
+        print("TOTAL TIME --- %s ---" % (datetime.timedelta(seconds=tps) ) )
+
     def phase1(self,phasesToExecute=None):
         """
         **The step will launch in parallel multiple Sofa scene (nbrCPU by nbrCPU number of scene) until
