@@ -99,6 +99,16 @@ def removeNodes(nodes):
     for node in nodes:
         removeChild(node)
 
+def CreateStateFile(node):
+    
+    # Find the WriteState component in the node
+    writeState_com = node.getObject('myWriteState')
+
+    # Access the filename data of the WriteState component
+    fileName_data = writeState_com.findData('filename').value
+
+
+
 def getNodeSolver(node):
     '''
     Get specific Solver if contained in :class:`sofaPy3:Sofa.Core.Node`.
