@@ -67,8 +67,14 @@ outputDir = utility.openDirName('Select the directory that will contain all the 
 # addRigidBodyModes = [0,0,0]
 
 # ### liverFine_gravity
+# nodeToReduce ='/liver'
+# actuator = ObjToAnimate("actuator/actuatorState","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
+# listObjToAnimate = [actuator]
+# addRigidBodyModes = [0,0,0]
+
+# ### P20_liver
 nodeToReduce ='/liver'
-actuator = ObjToAnimate("actuator/actuatorState","doingNothing",incr=0.4,incrPeriod=2.5,rangeOfAction=6.2,angle=0,rodRadius=0.4)
+actuator = ObjToAnimate("actuatorLiver/actuatorLiver","doingNothing",incr=0.2,incrPeriod=2.5,rangeOfAction=20,angle=0,rodRadius=0.4)
 listObjToAnimate = [actuator]
 addRigidBodyModes = [0,0,0]
 
@@ -77,6 +83,7 @@ addRigidBodyModes = [0,0,0]
 #actuator = ObjToAnimate("actuatorLiver/actuatorLiver","doingNothing",incr=0.2,incrPeriod=2.5,rangeOfAction=20,angle=0,rodRadius=0.4)
 #listObjToAnimate = [actuator]
 #addRigidBodyModes = [0,0,0]
+
 
 # ### liverFine_and_particles_LinearMovement_FreeMotion.py
 # nodeToReduce ='/liver'
@@ -201,12 +208,12 @@ reduceMyModel = ReduceModel(    originalScene,
 #######################################################################
 ####################       EXECUTION        ###########################
 ### TO PERFORM THE REDUCTION ALL AT ONCE:
-reduceMyModel.performReduction()
+#reduceMyModel.performReduction()
 
 #######################################################################
 ####################       EXECUTION        ###########################
 ### TO PERFORM THE REDUCTION ALL AT ONCE, BUT STARTING FROM PHASE 2:
-#reduceMyModel.performReductionFromPhase2()
+reduceMyModel.performReductionFromPhase2()
 
 ### TO PERFORM THE REDUCTION STEP BY STEP:
 ####################    SOFA LAUNCHER       ##########################
