@@ -37,8 +37,7 @@ class MOController(Sofa.Core.Controller):
 
 
 meshPath = os.path.dirname(os.path.abspath(__file__))+'/mesh/'
-plugins=["SofaPython3","SoftRobots","ModelOrderReduction","STLIB",
-        
+plugins=["SofaPython3",
          "Sofa.Component.Visual",
          "Sofa.Component.AnimationLoop",
          "Sofa.GL.Component.Rendering3D",
@@ -73,7 +72,7 @@ def createScene(rootNode):
 
     # Visual manager loop
     rootNode.addObject('DefaultVisualManagerLoop')
-    rootNode.addObject('VisualStyle', displayFlags='showCollisionModels showForceFields hideWireframe')
+    rootNode.addObject('VisualStyle', displayFlags='showCollisionModels hideForceFields showWireframe')
 
     # Collision pipeline
     rootNode.addObject('CollisionPipeline', verbose="0")
@@ -96,12 +95,15 @@ def createScene(rootNode):
     carvingElement = rootNode.addChild('carvingElement')
 
     # Access the mechanical object 
-    particles = carvingElement.addObject('MechanicalObject', name='Particles', template='Vec3d', position='-2 3 5', velocity='0 0 0')
     
-    carvingElement.addObject(MOController(state=particles))
+    particles = carvingElement.addObject('MechanicalObject', name='Particles', template='Vec3d', position='-2 3 4', velocity='0 0 0')
+    #carvingElement.addObject('LinearMovementConstraint', template="Vec3d", indices="0", relativeMovements="0", showMovement="1",
+    #    keyTimes="0 2 4 6 8 10 12 14 16 18",
+    #    movements="-2.0 3.0 4.0      -2.0 3.0 2.0     -2.0 3.0 4.0     0.0 8.0 0.0   -2.0 4.0 0.0      -2.0 6.0 0.0   -5.0 2.0 0.0  -2.0 2.0 -2.0  -3.0 2.0 0.0  -3.0 4.0 4.0")
+    
 
     carvingElement.addObject('UniformMass', name='Mass', totalMass='40.0')
-    carvingElement.addObject('ConstantForceField', totalForce='0 0 -20 0 0 0')
+    #carvingElement.addObject('ConstantForceField', totalForce='0 0 -20 0 0 0')
     carvingElement.addObject('SphereCollisionModel', name='tool', radius="0.1", tags="CarvingTool")
 
     #----------------------------------------------------------------------------------------
@@ -133,6 +135,9 @@ def createScene(rootNode):
     collision.addObject('Tetra2TriangleTopologicalMapping', input='@../liver_topo', output='@container')
     collision.addObject('TriangleCollisionModel', name='triangleCol')
     collision.addObject('PointCollisionModel', name='pointCol',contactStiffness="1000")
+    
+    collision.addObject('TrianglePressureForceField', name='trianglePressure', template='Vec3d', showForces=True, triangleList='0', pressure='0 0 1')
+    triangleList
 
     # Add an actuator for liver
     actuatorLiver = rootNode.addChild('actuatorLiver')

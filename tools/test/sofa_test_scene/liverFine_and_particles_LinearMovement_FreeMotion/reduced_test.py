@@ -149,6 +149,12 @@ def createScene(rootNode):
                         name="Reduced_test",
                         surfaceMeshFileName=surfaceMeshFileName)
 
+
+    readStateNode = rootNode.addChild('readState')
+    readStateNode.addObject('MechanicalObject', name="liverState", )
+    filepath = "../particleGravity.txt"
+    readStateNode.addObject('ReadState', name="StateReader", filename=filepath, printLog=True)
+
     # translate = 300
     # rotationBlue = 60.0
     # rotationWhite = 80
